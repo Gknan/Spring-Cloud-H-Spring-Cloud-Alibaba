@@ -15,7 +15,9 @@ import javax.annotation.Resource;
 public class OrderController {
     // 服务之间的调用，最原始 HTTPClient Resttemplate
 
-    public static final String PAYMENT_URL = "http://localhost:8001";
+//    public static final String PAYMENT_URL = "http://localhost:8001"; // 写死多个服务实例不能均衡
+
+    public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     @Resource // 注入并实例化
     private RestTemplate restTemplate;

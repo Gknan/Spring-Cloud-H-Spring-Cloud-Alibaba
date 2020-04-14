@@ -12,6 +12,12 @@
     <artifactId>cloud-consumer-order80</artifactId>
 
     <dependencies>
+        <!--引入 Eureka Client-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
         <!--引入自己定义的 API 公共模块-->
         <dependency>
             <groupId>cn.hust.cloud</groupId>

@@ -5,13 +5,20 @@ import cn.hust.cloud.entities.Payment;
 import cn.hust.cloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @Slf4j
 public class PaymentController {
+
+    // 注入 DiscoryClient
+    @Resource
+    private DiscoveryClient discoveryClient;
 
     @Value("${server.port}") // 读取配置文件中的 server.port
     private String serverPort;
@@ -41,5 +48,19 @@ public class PaymentController {
         } else {
             return new CommonResult(444, "没有记录，查询 ID 为" + id, null);
         }
+    }
+
+    @GetMapping(value = "/payment/discovery")
+    public Object discovery() {
+        List<String> services = discoveryClient.getServices();
+        for (String service : services) {
+            log.info("********service name: {}", service);
+            List<ServiceInstance> instances = discoveryClient.getInstances(service);
+            for (ServiceInstance instance : instances) {
+                log.info("***** instance: host {}, port {}, serviceId {}, uri {}",instance.getHost(), instance.getPort(), instance.getServiceId(), instance.getUri());
+            }
+        }
+
+        return discoveryClient;
     }
 }

@@ -13,3 +13,9 @@ ribbon:
   ReadTimeout: 5000
   # 建立连接后服务器读取到可用资源所用的时间
   ConnectTimeout: 5000
+
+# 日志级别
+logging:
+  level:
+    # feign 日志以什么级别监控哪个接口
+    cn.hust.cloud.service.PaymentFeignService: debug

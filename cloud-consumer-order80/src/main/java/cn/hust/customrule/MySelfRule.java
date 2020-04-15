@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <h1>Ribbon 负载均衡策略替换</h1>
  */
-@Configuration
+//@Configuration
 public class MySelfRule {
 
     @Bean

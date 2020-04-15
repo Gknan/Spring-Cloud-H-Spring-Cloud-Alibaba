@@ -2,7 +2,12 @@ package cn.hust.cloud.controller;
 
 import cn.hust.cloud.entities.CommonResult;
 import cn.hust.cloud.entities.Payment;
+import cn.hust.cloud.lb.LoadBalancer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -20,7 +26,15 @@ public class OrderController {
 
     public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
-    @Resource // 注入并实例化
+    @Resource
+    private LoadBalancer loadBalancer;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
+
+//    @Resource // 注入并实例化
+    @Autowired // 按照类型注入
+    @Qualifier(value = "myRestTempalte") // 辅助 Autowired ，合起来就是按照类型 + 名称注入
     private RestTemplate restTemplate;
 
     @GetMapping("/consumer/payment/create") // 浏览器只能发 get 请求
@@ -61,5 +75,17 @@ public class OrderController {
         } else {
             return new CommonResult<>(444, "创建失败");
         }
+    }
+
+
+    @GetMapping(value = "/consumer/payment/lb")
+    public String getPaymentLB() {
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        if (instances == null || instances.size() <= 0) {
+            return null;
+        }
+
+        ServiceInstance serviceInstance = loadBalancer.intances(instances);
+        return restTemplate.getForObject(serviceInstance.getUri() + "/payment/lb", String.class);
     }
 }

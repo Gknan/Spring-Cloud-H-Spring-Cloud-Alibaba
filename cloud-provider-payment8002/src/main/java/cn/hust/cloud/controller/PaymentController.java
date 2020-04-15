@@ -42,4 +42,10 @@ public class PaymentController {
             return new CommonResult(444, "没有记录，查询 ID 为" + id, null);
         }
     }
+
+    // 帮助自定义负载均衡，返回当前服务实例的服务端口号
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;
+    }
 }

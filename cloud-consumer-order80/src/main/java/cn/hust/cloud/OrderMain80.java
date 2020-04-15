@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 @EnableEurekaClient
 @SpringBootApplication
-@RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)// 指定访问的服务名和使用的负载均衡策略
+//@RibbonClient(name = "CLOUD-PAYMENT-SERVICE", configuration = MySelfRule.class)// 指定访问的服务名和使用的负载均衡策略
 public class OrderMain80 {
 
     public static void main(String[] args) {

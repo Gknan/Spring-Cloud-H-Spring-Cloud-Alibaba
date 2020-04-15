@@ -63,4 +63,10 @@ public class PaymentController {
 
         return discoveryClient;
     }
+
+    // 帮助自定义负载均衡，返回当前服务实例的服务端口号
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;
+    }
 }

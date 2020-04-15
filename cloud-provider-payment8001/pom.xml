@@ -12,6 +12,7 @@
     <artifactId>cloud-provider-payment8001</artifactId>
     <dependencies>
         <!--引入 Eureka Client-->
+        <!--Eureka Client 2.2.1 自动集成了 ribbon-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>

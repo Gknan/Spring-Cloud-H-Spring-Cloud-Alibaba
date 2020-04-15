@@ -23,16 +23,16 @@ public class PaymentService {
 
     // 超过 3 s 降级；主启动类激活该注解
     @HystrixCommand(fallbackMethod = "paymentInfo_timoutHandler", commandProperties = {
-        @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+        @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
     })
     public String paymentInfo_timout(Integer id) {
-        int timeNum = 5;
-//        try {
-//            TimeUnit.SECONDS.sleep(timeNum);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        int ret = 10 / 0; // 异常兜底
+        int timeNum = 3;
+        try {
+            TimeUnit.SECONDS.sleep(timeNum);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        int ret = 10 / 0; // 异常兜底
         return "线程池: " +
                 Thread.currentThread().getName()
                 + " paymentInfo_timout, id" + id

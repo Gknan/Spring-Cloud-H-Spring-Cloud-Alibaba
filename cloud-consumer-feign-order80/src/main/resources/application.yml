@@ -6,3 +6,10 @@ eureka:
     register-with-eureka: false # Feign 客户端不需要注册到 Eureka
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+
+# 设置 Feign 客户端超时时间（openFeign 默认支持 Ribbon）
+ribbon:
+  # 建立连接的超时时间，两端连接所用的时间
+  ReadTimeout: 5000
+  # 建立连接后服务器读取到可用资源所用的时间
+  ConnectTimeout: 5000

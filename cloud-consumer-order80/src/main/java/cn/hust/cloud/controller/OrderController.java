@@ -77,7 +77,7 @@ public class OrderController {
         }
     }
 
-
+    // 测试手写的 RandomLoadBalancer
     @GetMapping(value = "/consumer/payment/lb")
     public String getPaymentLB() {
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");

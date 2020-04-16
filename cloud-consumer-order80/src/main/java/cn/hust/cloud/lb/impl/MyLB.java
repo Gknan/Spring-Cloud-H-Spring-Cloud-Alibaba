@@ -15,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class MyLB implements LoadBalancer {
 
+    // 记录当前的访问次数
     private AtomicInteger atomicInteger =
             new AtomicInteger(0);
 

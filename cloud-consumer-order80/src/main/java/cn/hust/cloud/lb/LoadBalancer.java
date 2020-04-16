@@ -9,5 +9,10 @@ import java.util.List;
  */
 public interface LoadBalancer {
 
+    /**
+     * 传入服务实例列表，根据轮询返回一个服务实例
+     * @param serviceInstances
+     * @return
+     */
     ServiceInstance intances(List<ServiceInstance> serviceInstances);
 }

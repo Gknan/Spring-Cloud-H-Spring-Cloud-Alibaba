@@ -13,8 +13,17 @@ spring:
             - payment-order-config
       # 搜索分支
       label: master
+  kafka:
+    bootstrap-servers: localhost:9092 # kafka 的服务器地址
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:7001/eureka
+
+# 暴露监控端点 bus 刷新的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include:  "bus-refresh"

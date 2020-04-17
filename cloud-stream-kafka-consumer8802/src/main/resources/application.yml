@@ -1,0 +1,28 @@
+server:
+  port: 8802
+
+spring:
+  application:
+    name: cloud-stream-consumer # 注册金 Eureka 服务器的微服务名
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092  # Kafka 服务器
+          zk-nodes: localhost:2181
+          auto-create-topics: true
+        bindings:
+          input: # 通道的名称
+            destination: studyExchange # 要使用的 Exchange 名称定义
+#            content-type: application/json # 消息发送的格式 文本类型设置为 text/plain
+            group: group1 # 分组1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 2 # 心跳时间
+    lease-expiration-duration-in-seconds: 5 # 过期下线间隔时间
+    instance-id: receive-8002.com # 在消息列表中显示主机名称
+    prefer-ip-address: true # 访问路径变为 ip 地址

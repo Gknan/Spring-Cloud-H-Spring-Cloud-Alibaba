@@ -82,4 +82,11 @@ public class PaymentController {
 
         return serverPort;
     }
+
+
+    // Sleuth 链路追踪
+    @GetMapping("/payment/zipkin")
+    public String pyamentZipkin() {
+        return "************ Zipkin server fallback ***********";
+    }
 }

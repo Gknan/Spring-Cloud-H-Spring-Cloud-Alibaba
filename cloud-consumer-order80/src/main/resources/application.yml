@@ -4,12 +4,18 @@ server:
 spring:
   application:
     name: cloud-order-service
+  # sleuth 链路追踪配置
+  zipkin:
+    base-url: http://localhost:9411 # zipkin 端口
+  sleuth:
+    sampler:
+      probability: 1 # 采样率介于 0 1 之间，1 表示全采样
 
 eureka:
   client:
     register-with-eureka: true # 向 Eureak server 注册
     fetch-registry: true # 从 server 获取其他微服务注册信息
     service-url:
-#      defaultZone: http://localhost:7001/eureka
+      defaultZone: http://localhost:7001/eureka
       # 微服务注册到 Eureak 集群
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
+#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka

@@ -29,6 +29,7 @@
         <module>cloud-stream-kafka-consumer8803</module>
         <module>cloudalibaba-provider-payment9001</module>
         <module>cloudalibaba-provider-payment9002</module>
+        <module>cloudalibaba-consumer-order83</module>
     </modules>
     <packaging>pom</packaging><!--父工程 打包方式 pom-->
 

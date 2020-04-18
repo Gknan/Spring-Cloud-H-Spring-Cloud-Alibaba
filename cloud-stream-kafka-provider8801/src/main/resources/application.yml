@@ -14,10 +14,10 @@ spring:
 #        myOutput: # 自定义 output
 #          destination: studyExchange # 要使用的 Exchange 名称定义
 #          content-type: application/json # 消息发送的格式 文本类型设置为 text/plain
-        bindings:
-          output: # 默认管道
-            destination: studyExchange # 要使用的 Exchange 名称定义
-            content-type: application/json # 消息发送的格式 文本类型设置为 text/plain
+      bindings:
+        output: # 默认管道
+          destination: studyExchange # 要使用的 Exchange 名称定义
+          content-type: application/json # 消息发送的格式 文本类型设置为 text/plain
 #        bindings:
 #          output:
 

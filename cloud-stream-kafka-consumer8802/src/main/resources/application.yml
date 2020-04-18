@@ -6,16 +6,17 @@ spring:
     name: cloud-stream-consumer # 注册金 Eureka 服务器的微服务名
   cloud:
     stream:
+      bindings:
+        input: # 通道的名称
+          destination: studyExchange # 要使用的 Exchange 名称定义
+          #            content-type: application/json # 消息发送的格式 文本类型设置为 text/plain
+          group: group1 # 分组1
       kafka:
         binder:
           brokers: localhost:9092  # Kafka 服务器
           zk-nodes: localhost:2181
           auto-create-topics: true
-        bindings:
-          input: # 通道的名称
-            destination: studyExchange # 要使用的 Exchange 名称定义
-#            content-type: application/json # 消息发送的格式 文本类型设置为 text/plain
-            group: group1 # 分组1
+
 
 eureka:
   client:
